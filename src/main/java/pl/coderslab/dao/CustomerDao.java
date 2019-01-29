@@ -27,6 +27,20 @@ public class CustomerDao {
         return customer;
     }
 
+    public static void update(Customer customer) {
+        try (Connection conn = DbUtil.getConn()) {
+            String sql = "UPDATE customers SET first_name=?, last_name=?, date_of_birth=? where id=?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, customer.getFirstName());
+            preparedStatement.setString(2, customer.getLastName());
+            preparedStatement.setDate(3, (Date) customer.getDateOfBirth());
+            preparedStatement.setInt(4, customer.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Wystąpił wyjątek, numer błędu: " + e.getErrorCode());
+        }
+    }
+
     public static Customer delete(Customer customer) {
         if (customer.getId() != 0) {
             try (Connection conn = DbUtil.getConn()) {
@@ -39,7 +53,7 @@ public class CustomerDao {
                 System.out.println("Wystąpił wyjątek, numer błędu: " + e.getErrorCode());
             }
         }
-    return customer;
+        return customer;
     }
 
     public static List<Customer> loadAllCustomers() {

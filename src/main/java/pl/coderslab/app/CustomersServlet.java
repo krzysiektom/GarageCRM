@@ -12,9 +12,9 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/")
-public class TestServlet extends HttpServlet {
+public class CustomersServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+//"TODO" zapisanie nowego uzytkownika/ usunięcie oraz przetestowanie create, update i delete
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
