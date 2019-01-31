@@ -43,8 +43,8 @@
                 <td><a href="/VehiclesCustomerServlet?customerId=${customer.id}">Szczegóły</a></td>
                 <td><a href="/OrdersCustomerServlet?customerId=${customer.id}">Szczegóły</a></td>
                 <td>
-                    <a href="/ExerciseSolutionServlet?customerId=${customer.id}">Edytuj</a>
-                    <a href="/ExerciseSolutionServlet?customerId=${customer.id}">Usuń</a>
+                    <a href="customerEdit.jsp?customerId=${customer.id}&customerFirstName=${customer.firstName}&customerLastName=${customer.lastName}&customerDateOfBirth=${customer.dateOfBirth}">Edytuj</a>
+                    <a href="/CustomersServlet?customerId=${customer.id}">Usuń</a>
                 </td>
             </tr>
         </c:forEach>

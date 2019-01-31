@@ -13,9 +13,7 @@ public class CustomerDao {
             String sql = "INSERT INTO customers(first_name, last_name, date_of_birth) VALUES (?, ?, ?)";
             String[] generatedColumns = {"customer_id"};
             PreparedStatement preparedStatement = conn.prepareStatement(sql, generatedColumns);
-            preparedStatement.setString(1, customer.getFirstName());
-            preparedStatement.setString(2, customer.getLastName());
-            preparedStatement.setDate(3, (Date) customer.getDateOfBirth());
+            preparedStatmentCustomer(customer, preparedStatement);
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()) {
@@ -27,13 +25,21 @@ public class CustomerDao {
         return customer;
     }
 
+    private static void preparedStatmentCustomer(Customer customer, PreparedStatement preparedStatement) throws SQLException {
+        preparedStatement.setString(1, customer.getFirstName());
+        preparedStatement.setString(2, customer.getLastName());
+        if (customer.getDateOfBirth().toString().equals("2038-01-19")) {
+            preparedStatement.setNull(3, Types.DATE);
+        } else {
+            preparedStatement.setDate(3, customer.getDateOfBirth());
+        }
+    }
+
     public static void update(Customer customer) {
         try (Connection conn = DbUtil.getConn()) {
-            String sql = "UPDATE customers SET first_name=?, last_name=?, date_of_birth=? where id=?";
+            String sql = "UPDATE customers SET first_name=?, last_name=?, date_of_birth=? where customer_id=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, customer.getFirstName());
-            preparedStatement.setString(2, customer.getLastName());
-            preparedStatement.setDate(3, (Date) customer.getDateOfBirth());
+            preparedStatmentCustomer(customer, preparedStatement);
             preparedStatement.setInt(4, customer.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -44,7 +50,7 @@ public class CustomerDao {
     public static Customer delete(Customer customer) {
         if (customer.getId() != 0) {
             try (Connection conn = DbUtil.getConn()) {
-                String sql = "DELETE FROM users WHERE id=?";
+                String sql = "DELETE FROM customers WHERE customer_id=?";
                 PreparedStatement preparedStatement = conn.prepareStatement(sql);
                 preparedStatement.setInt(1, customer.getId());
                 preparedStatement.executeUpdate();
@@ -55,6 +61,24 @@ public class CustomerDao {
         }
         return customer;
     }
+
+    public static Customer loadCustomerById(int id) {
+        if (id != 0) {
+            try (Connection conn = DbUtil.getConn()) {
+                String sql = "SELECT * FROM customers WHERE customer_id=?";
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setInt(1, id);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if (resultSet.next()) {
+                    return getCustomersFromResultSet(conn, resultSet);
+                }
+            } catch (SQLException e) {
+                System.out.println("Wystąpił wyjątek, numer błędu: " + e.getErrorCode());
+            }
+        }
+        return new Customer();
+    }
+
 
     public static List<Customer> loadAllCustomers() {
         List<Customer> customers = new ArrayList<>();

@@ -8,8 +8,10 @@
 <body>
 <nav class="nav">
     <a class="nav-link active" href="/HomeServlet">Strona główna</a>
-    <a class="nav-link" href="/GroupServlet">Grupy</a>
-    <a class="nav-link" href="/AdminServlet">Panel administratora</a>
+    <a class="nav-link" href="/CustomersServlet">Klienci</a>
+    <a class="nav-link" href="/OrdersServlet">Zlecenia</a>
+    <a class="nav-link" href="/EmployeesServlet">Pracownicy</a>
+    <a class="nav-link" href="/ReportsServlet">Raporty</a>
 </nav>
 
 </body>
