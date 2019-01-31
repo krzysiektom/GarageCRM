@@ -12,6 +12,20 @@ CREATE TABLE customers
   date_of_birth date         NULL
 );
 
+CREATE TABLE employees
+(
+  id             INT auto_increment,
+  first_name     VARCHAR(255) NOT NULL,
+  last_name      VARCHAR(255) NOT NULL,
+  street         VARCHAR(255) NOT NULL,
+  zip_code       VARCHAR(6)   NOT NULL,
+  city           VARCHAR(255) NOT NULL,
+  phone_number   VARCHAR(25)  NOT NULL,
+  note           VARCHAR(255) NOT NULL,
+  cost_work_hour int          NOT NULL,
+  PRIMARY KEY (id)
+);
+
 insert into customers (customer_id, first_name, last_name, date_of_birth) values (1, 'Toddie', 'Belle', '1978-08-14');
 insert into customers (customer_id, first_name, last_name, date_of_birth) values (2, 'Wolfie', 'Gehringer', null);
 insert into customers (customer_id, first_name, last_name, date_of_birth) values (3, 'Kirsti', 'Henstone', null);
@@ -112,3 +126,14 @@ insert into customers (customer_id, first_name, last_name, date_of_birth) values
 insert into customers (customer_id, first_name, last_name, date_of_birth) values (98, 'Tabitha', 'Browning', '2006-06-14');
 insert into customers (customer_id, first_name, last_name, date_of_birth) values (99, 'Veda', 'Merrall', null);
 insert into customers (customer_id, first_name, last_name, date_of_birth) values (100, 'Tracey', 'Smitton', null);
+
+insert into employees (id, first_name, last_name, street, zip_code, city, phone_number, note, cost_work_hour) values (1, 'Gwen', 'Garrioch', 'Havey', '02-225', 'Mugi', '6071970909', 'tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus', 26);
+insert into employees (id, first_name, last_name, street, zip_code, city, phone_number, note, cost_work_hour) values (2, 'Hilary', 'Palphreyman', 'Shelley', '02-225', '‘Izrā', '5815849810', 'hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante', 31);
+insert into employees (id, first_name, last_name, street, zip_code, city, phone_number, note, cost_work_hour) values (3, 'Marget', 'Romaine', 'Namekagon', '02-225', 'Meixi', '3683539034', 'eros elementum pellentesque quisque porta volutpat erat quisque erat eros viverra', 42);
+insert into employees (id, first_name, last_name, street, zip_code, city, phone_number, note, cost_work_hour) values (4, 'Nanice', 'Rexworthy', 'Anzinger', '02-225', 'Limbangan', '6843300878', 'orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris', 49);
+insert into employees (id, first_name, last_name, street, zip_code, city, phone_number, note, cost_work_hour) values (5, 'Dorine', 'Etherton', 'Jana', '02-225', 'San Casimiro', '7148679892', 'lectus vestibulum quam sapien varius ut blandit non interdum in ante vestibulum ante ipsum primis in faucibus', 35);
+insert into employees (id, first_name, last_name, street, zip_code, city, phone_number, note, cost_work_hour) values (6, 'Joelle', 'Edgecombe', 'Coleman', '02-225', 'Escola', '4604728681', 'luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum', 29);
+insert into employees (id, first_name, last_name, street, zip_code, city, phone_number, note, cost_work_hour) values (7, 'Hettie', 'Anwell', 'Erie', '02-225', 'Songhe', '4535440336', 'lectus vestibulum quam sapien varius ut blandit non interdum in', 34);
+insert into employees (id, first_name, last_name, street, zip_code, city, phone_number, note, cost_work_hour) values (8, 'Silvia', 'Fyldes', 'Hovde', '02-225', 'Platičevo', '4418829256', 'justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam', 49);
+insert into employees (id, first_name, last_name, street, zip_code, city, phone_number, note, cost_work_hour) values (9, 'Bradford', 'Jerok', 'Independence', '02-225', 'Sindangsuka', '1414606969', 'augue aliquam erat volutpat in congue etiam justo etiam pretium iaculis', 42);
+insert into employees (id, first_name, last_name, street, zip_code, city, phone_number, note, cost_work_hour) values (10, 'Andrus', 'Elnaugh', 'Mifflin', '02-225', 'Yaguaraparo', '7299416456', 'nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel', 47);

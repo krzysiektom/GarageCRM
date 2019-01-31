@@ -13,7 +13,7 @@ public class CustomerDao {
             String sql = "INSERT INTO customers(first_name, last_name, date_of_birth) VALUES (?, ?, ?)";
             String[] generatedColumns = {"customer_id"};
             PreparedStatement preparedStatement = conn.prepareStatement(sql, generatedColumns);
-            preparedStatmentCustomer(customer, preparedStatement);
+            preparedStatementCustomer(customer, preparedStatement);
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()) {
@@ -25,7 +25,7 @@ public class CustomerDao {
         return customer;
     }
 
-    private static void preparedStatmentCustomer(Customer customer, PreparedStatement preparedStatement) throws SQLException {
+    private static void preparedStatementCustomer(Customer customer, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setString(1, customer.getFirstName());
         preparedStatement.setString(2, customer.getLastName());
         if (customer.getDateOfBirth().toString().equals("2038-01-19")) {
@@ -39,7 +39,7 @@ public class CustomerDao {
         try (Connection conn = DbUtil.getConn()) {
             String sql = "UPDATE customers SET first_name=?, last_name=?, date_of_birth=? where customer_id=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatmentCustomer(customer, preparedStatement);
+            preparedStatementCustomer(customer, preparedStatement);
             preparedStatement.setInt(4, customer.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -92,8 +92,6 @@ public class CustomerDao {
         } catch (SQLException e) {
             System.out.println("Wystąpił wyjątek, numer błędu: " + e.getErrorCode());
         }
-
-
         return customers;
     }
 
